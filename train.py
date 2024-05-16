@@ -14,17 +14,6 @@ torch.manual_seed(seed=seed)
 np.random.seed(seed)
 random.seed(seed)
 
-
-def add_noise_replace(data, replace_ratio):
-    noisy_data = np.copy(data)
-    num_replace = int(replace_ratio * len(data))
-    replace_indices = np.random.choice(len(data), size=num_replace, replace=False)
-    replacement_values = np.random.rand(num_replace)
-    noisy_data[replace_indices] = replacement_values
-
-    return noisy_data
-
-
 replace_ratio = 0.2
 poi_similarity, s_adj, d_adj, mobility, neighbor = utils.load_data()
 poi_edge_index = utils.create_graph(poi_similarity, args.importance_k)
